@@ -23,17 +23,17 @@
 >> Create Neural Object using `yourObj = Neural(nodes) # see tutorial for closer description`
 
 ## Example Code
-
-`>>> from neural import Neural`  
-`>>> nodes = [[0,0],`  
-`>>>          [0,0,0,0,0,0],`  
-`>>>          [0,0,0,0,0,0],`  
-`>>>          [0,0,0,0]]`  
-`>>> n = Neural(nodes)`  
-`>>> n.shuffle()`  
-`>>> n.show()`  
-`>>> n.save("my_neural_network.txt")`  
-
+```
+>>> from neural import Neural
+>>> nodes = [[0,0],
+>>>          [0,0,0,0,0,0],
+>>>          [0,0,0,0,0,0],
+>>>          [0,0,0,0]]
+>>> n = Neural(nodes)
+>>> n.shuffle()
+>>> n.show()
+>>> n.save("my_neural_network.txt")
+```
 ## Tutorial
 
 > setup network nodes with __init__(self, nodes)
