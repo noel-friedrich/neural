@@ -8,9 +8,6 @@
 * [Tutorial](#tutorial)
 * [Status](#status)
 
-## Screenshots
-![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neural2884.PNG "Tkinter Visualization of Neural Network")
-
 ## Setup
 > Download Python File/s  
 
@@ -63,6 +60,9 @@
 # load network from file_name.txt to current network  
 > network1.load(file_name) # file_name must be string ending in .txt (located in same directory)
 ```
+## Screenshots
+![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neural2884.PNG "Tkinter Visualization of Neural Network")
+
 ## Status
 Project is _IN PROGRESS_  
 _todo list in PROJECT: __Neural Network maker___  
