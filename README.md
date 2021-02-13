@@ -8,11 +8,8 @@
 * [Tutorial](#tutorial)
 * [Status](#status)
 
-## General info
-> Python Class to create Neural Networks. Supports dynamic sizing options and visualization. 
-
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neural2884.PNG)
 
 ## Setup
 > Download Python File/s  
