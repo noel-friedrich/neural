@@ -51,7 +51,7 @@
 > network1.show(size = [x,y]) # modify window size
 
 # update every weight to be random from -1 to 1  
-> network1.shuffle()
+> network1.shuffle() # uses random module
 
 # update every weight to be in range of +- amount of given weights (of another neural network)
 > network1.shuffle_amount(amount) # amount will be devided by 100
