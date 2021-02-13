@@ -65,5 +65,5 @@
 ```
 ## Status
 Project is _IN PROGRESS_  
-_todo list in PROJECT: __Neural Network maker___
+_todo list in PROJECT: __Neural Network maker___  
 https://github.com/noel-friedrich/neural/projects/1
