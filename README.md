@@ -15,7 +15,15 @@
 ![Example screenshot](./img/screenshot.png)
 
 ## Setup
-> Download 
+> Download Python File/s  
+
+> Installing them as Module using pip  
+>> Tutorial: http://www.discoversdk.com/blog/how-to-create-a-new-python-module  
+
+> Use as Class in your Project
+>> Copy the File/s into your Project Folder  
+>> Import the Class using `from neural import Neural`  
+>> Create Neural Object using `yourObj = Neural(nodes) # see tutorial for closer description`
 
 ## Example Code
 
@@ -57,6 +65,5 @@
 > `network1.load(file_name) # file_name must be string ending in .txt (located in same directory)`  
 
 ## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
-
-
+Project is _IN PROGRESS_  
+_todo list in PROJECT: __Neural Network maker___
