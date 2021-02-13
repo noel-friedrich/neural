@@ -25,14 +25,15 @@
 ## Example Code
 ```python
 >>> from neural import Neural
->>> nodes = [[0,0],
->>>          [0,0,0,0,0,0],
->>>          [0,0,0,0,0,0],
->>>          [0,0,0,0]]
->>> n = Neural(nodes)
->>> n.shuffle()
->>> n.show()
->>> n.save("my_neural_network.txt")
+>>> nodes = [[0,0], # 2 Input Neurons
+>>>          [0,0,0,0,0,0], # 6 Hidden Neurons (Hidden Layer #1)
+>>>          [0,0,0,0,0,0], # 6 Hidden Neurons (Hidden Layer #2)
+>>>          [0,0,0,0]] # 4 Output Neurons
+>>> n = Neural(nodes) # make Neural Object, __init__ requires nodes
+>>> n.shuffle() # shuffle all weights to be random (using random module)
+>>> print(n.input([1,2,3,4]) # print out output neurons with input list
+>>> n.show() # visualize network using Tkinter
+>>> n.save("my_neural_network.txt") # save network to file_name.txt
 ```
 ## Tutorial
 
