@@ -23,7 +23,7 @@
 >> Create Neural Object using `yourObj = Neural(nodes) # see tutorial for closer description`
 
 ## Example Code
-```
+```python
 >>> from neural import Neural
 >>> nodes = [[0,0],
 >>>          [0,0,0,0,0,0],
