@@ -9,7 +9,7 @@
 * [Status](#status)
 
 ## Screenshots
-![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neural2884.PNG)
+![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neural2884.PNG "Tkinter Visualization of Neural Network")
 
 ## Setup
 > Download Python File/s  
