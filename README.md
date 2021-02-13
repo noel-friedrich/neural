@@ -21,7 +21,7 @@
 > Use as Class in your Project
 >> Copy the File/s into your Project Folder  
 >> Import the Class using `from neural import Neural`  
->> Create Neural Object using `yourObj = Neural(nodes) # see tutorial for closer description`
+>> Create Neural Object using `yourObj = Neural(nodes) # see `[Tutorial](#tutorial)` for closer description`
 
 ## Example Code
 ```python
