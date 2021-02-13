@@ -23,16 +23,16 @@
 ```
 
 ## Setup
-> Download Python File/s  
+1. Download Python File/s  
 
-> Installing them as Module using pip  
->> Tutorial: http://www.discoversdk.com/blog/how-to-create-a-new-python-module  
->> Exporting as a _Public Module_ soon!
+2. Installing them as Module using pip  
+> Tutorial: http://www.discoversdk.com/blog/how-to-create-a-new-python-module  
+> Exporting as a _Public Module_ soon!
 
-> Use as Class in your Project
->> Copy the File/s into your Project Folder  
->> Import the Class using `from neural import Neural`  
->> Create Neural Object using `yourObj = Neural(nodes) # see `[Tutorial](#tutorial)` for closer description`
+2. Use as Class in your Project
+> 1. Copy the File/s into your Project Folder  
+> 2. Import the Class using `from neural import Neural`  
+> 3. Create Neural Object using `yourObj = Neural(nodes) # see `[Tutorial](#tutorial)` for closer description`
 
 ## Tutorial
 ```python
