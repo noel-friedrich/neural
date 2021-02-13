@@ -44,7 +44,7 @@
 > network1 = Neural(nodes)
 
 # input values using  
-> network1.input([1,2]) # pass 1D list
+> network1.input([1,2]) # pass 1D list, len must be equal to number of input neurons
 
 # show network (with Tkinter module, located in neuraldisplay.py) using  
 > network1.show() # opens 1400px * 700px window
