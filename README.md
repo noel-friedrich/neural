@@ -16,6 +16,7 @@
 
 > Installing them as Module using pip  
 >> Tutorial: http://www.discoversdk.com/blog/how-to-create-a-new-python-module  
+>> Exporting as a _Public Module_ soon!
 
 > Use as Class in your Project
 >> Copy the File/s into your Project Folder  
