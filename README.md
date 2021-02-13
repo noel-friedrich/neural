@@ -41,7 +41,7 @@
 # setup network nodes with __init__(self, nodes)
 # nodes has to be a two dimensional array, containing floats/integers, representing nodes  
 > nodes = [[0,0],[0,0,0,0],[0,0,0]] # 2 input neurons, 1 hidden layer containing 4 neurons, 3 output neurons
-> network1 = Neural(nodes)
+> network1 = Neural(nodes) # create Neural Object
 
 # input values using  
 > network1.input([1,2]) # pass 1D list, len must be equal to number of input neurons
