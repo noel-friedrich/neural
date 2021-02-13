@@ -30,12 +30,12 @@ HOW TO USE
 
 EXAMPLE CODE
 
->>> from neural import Neural
->>> nodes = [[0,0],
-             [0,0,0,0,0,0],
-             [0,0,0,0,0,0],
-             [0,0,0,0]]
->>> n = Neural(nodes)
->>> n.shuffle()
->>> n.show()
->>> n.save("my_neural_network.txt")
+> from neural import Neural
+> nodes = [[0,0],
+           [0,0,0,0,0,0],
+           [0,0,0,0,0,0],
+           [0,0,0,0]]
+> n = Neural(nodes)
+> n.shuffle()
+> n.show()
+> n.save("my_neural_network.txt")
