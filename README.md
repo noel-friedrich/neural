@@ -8,18 +8,6 @@
 * [Tutorial](#tutorial)
 * [Status](#status)
 
-## Setup
-> Download Python File/s  
-
-> Installing them as Module using pip  
->> Tutorial: http://www.discoversdk.com/blog/how-to-create-a-new-python-module  
->> Exporting as a _Public Module_ soon!
-
-> Use as Class in your Project
->> Copy the File/s into your Project Folder  
->> Import the Class using `from neural import Neural`  
->> Create Neural Object using `yourObj = Neural(nodes) # see `[Tutorial](#tutorial)` for closer description`
-
 ## Example Code
 ```python
 >>> from neural import Neural
@@ -33,6 +21,19 @@
 >>> n.show() # visualize network using Tkinter
 >>> n.save("my_neural_network.txt") # save network to file_name.txt
 ```
+
+## Setup
+> Download Python File/s  
+
+> Installing them as Module using pip  
+>> Tutorial: http://www.discoversdk.com/blog/how-to-create-a-new-python-module  
+>> Exporting as a _Public Module_ soon!
+
+> Use as Class in your Project
+>> Copy the File/s into your Project Folder  
+>> Import the Class using `from neural import Neural`  
+>> Create Neural Object using `yourObj = Neural(nodes) # see `[Tutorial](#tutorial)` for closer description`
+
 ## Tutorial
 ```python
 # setup network nodes with __init__(self, nodes)
