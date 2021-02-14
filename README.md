@@ -10,7 +10,7 @@
 
 ## Example Code
 ```python
->>> from neural import Neural
+>>> from noelnetwork.neural import Neural
 >>> nodes = [[0,0], # 2 Input Neurons
 >>>          [0,0,0,0,0,0], # 6 Hidden Neurons (Hidden Layer #1)
 >>>          [0,0,0,0,0,0], # 6 Hidden Neurons (Hidden Layer #2)
@@ -23,21 +23,15 @@
 ```
 
 ## Setup
-1. Download Python File/s  
 
-2. Installing them as Module using pip  
-> Tutorial: http://www.discoversdk.com/blog/how-to-create-a-new-python-module  
-> Exporting as a _Public Module_ soon!
+Install using pip: ```$ pip install noelnetwork```
 
-2. Use as Class in your Project
-> 1. Copy the File/s into your Project Folder  
-> 2. Import the Class using `from neural import Neural`  
-> 3. Create Neural Object using `yourObj = Neural(nodes) # see `[Tutorial](#tutorial)` for closer description`
 
 ## Tutorial
 ```python
 # setup network nodes with __init__(self, nodes)
 # nodes has to be a two dimensional array, containing floats/integers, representing nodes  
+> from noelnetwork.neural import Neural # import Neural class
 > nodes = [[0,0],[0,0,0,0],[0,0,0]] # 2 input neurons, 1 hidden layer containing 4 neurons, 3 output neurons
 > network1 = Neural(nodes) # create Neural Object
 
