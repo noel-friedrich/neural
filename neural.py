@@ -112,14 +112,28 @@ class Neural:
                 for j in range(len(inputs)):
                     self.nodes[i][k]['weights'][j] += l_rate * self.nodes[i][k]["delta"] * inputs[j]
 
-    def get_training_data(self, file_name):
+    def load_training_data(self, file_name):
         with open("training3.txt","r") as file:
             lines = file.readlines()
         inputs, outputs = [], []
         for line in lines:
             inputs.append(line.replace("\n", "").split("=")[0].split(","))
             outputs.append(line.replace("\n", "").split("=")[1].split(","))
+
+        for i in range(len(inputs)):
+            for inp in range(len(inputs[i])):
+                inputs[i][inp] = int(inputs[i][inp])
+            for out in range(len(outputs[i])):
+                outputs[i][out] = int(outputs[i][out])
         return inputs, outputs
+
+    def get_total_score(self, inputs, outputs):
+        score, max_score = 0, len(inputs)
+        for i, o in zip(inputs, outputs):
+            out = n.input(i)
+            if out.index(max(out)) == o.index(max(o)):
+                score += 1
+        return score, max_score
      
     def train(self, learning_rate, cycles, inputs, expected, print_status = False):
         all_times = []
@@ -137,31 +151,3 @@ class Neural:
             seconds = round(time_diff % 60)
             if print_status:
                 print(f"error: {round(sum_error,10):15} | cycle: {cycle:4} | approx. time left: {minutes}m {seconds}s")
- 
-r.seed(1)
-
-
-
-for i in range(len(inputs)):
-    for inp in range(len(inputs[i])):
-        inputs[i][inp] = int(inputs[i][inp])
-    for out in range(len(outputs[i])):
-        outputs[i][out] = int(outputs[i][out])
-
-nodes = [[0 for i in range(2)],
-         [0 for i in range(4)],
-         [0 for i in range(4)],
-         [0 for i in range(2)]]
-n = Neural(nodes)
-n.shuffle()
-n.train(0.2, 10, inputs, outputs)
-
-print("-" * 100)
-score, max_score = 0, len(inputs)
-for i, o in zip(inputs, outputs):
-    out = n.input(i)
-    if out.index(max(out)) == o.index(max(o)):
-        score += 1
-print(f"SCORE {score}/{max_score}")
-
-n.show()
