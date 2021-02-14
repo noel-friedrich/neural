@@ -74,7 +74,7 @@
 # Access list of weights of an individual node using
 > network1.nodes[layer_number][position_in_layer]["weights"]
 ```
-![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neuralnodesstructure.PNG "Tkinter Visualization of Neural Network")
+![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neuralnodesstructure.PNG "Neural Network List Structure")
 ### Training using Backpropagation
 ```python
 # setup network nodes with __init__(self, nodes)
