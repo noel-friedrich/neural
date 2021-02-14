@@ -3,29 +3,34 @@ import ast as a
 import math
 import numpy as np
 import copy
+import time
 from statistics import mean
 from neuraldisplay import NeuralDisplay
 
 class Neural:
 
     def __init__(self, nodes):
-        self.links = {}
+        self.weights = {}
         self.change = {}
         self.nodes = []
         for layer in nodes:
             new_layer = []
             for neuron in layer:
-                new_layer.append({"output" : 0.0})
+                node_dict = {"output" : 0.0, "weights" : [], "layer":0}
+                new_layer.append(node_dict)
             self.nodes.append(new_layer)
             
         for i in range(len(nodes) - 1):
-            self.generate_link(nodes[i], nodes[i + 1], i)
+            for k in range(len(nodes[i+1])):
+                self.generate_weights(i+1,k, i)
 
-    def generate_link(self, s1, s2, num):
-        self.links["l" + str(num)] = {}
-        for i in range(len(s2)):
-            for k in range(len(s1)):
-                self.links["l" + str(num)][str(i) + "-" + str(k)] = 0
+        for layer, i in zip(self.nodes, range(len(self.nodes))):
+            for node in layer:
+                node["layer"] = i
+
+    def generate_weights(self, node_i, node_k, prev_layer):
+        for n in range(len(self.nodes[prev_layer])):
+            self.nodes[node_i][node_k]["weights"].append(0.0)
 
     def input(self, inputs):
         for i in range(len(self.nodes[0])):
@@ -41,39 +46,122 @@ class Neural:
             for k in range(len(self.nodes[i + 1])):
                 ergebnis = []
                 for n in range(len(self.nodes[i])):
-                    v = self.nodes[i][n]["output"] * (self.links["l" + str(i)][str(k) + "-" + str(n)])
+                    weight = self.nodes[i+1][k]["weights"][n]
+                    v = self.nodes[i][n]["output"] * weight
                     ergebnis.append(v)
-                if i == len(nodes) - 2:
-                    self.nodes[i+1][k]["output"] = mean(ergebnis)
-                else:
-                    self.nodes[i+1][k]["output"] = self.sigmoid(mean(ergebnis))
+                calculated_value = self.sigmoid(mean(ergebnis))
+                self.nodes[i+1][k]["output"] = calculated_value
                 
     def sigmoid(self, x):
         if x < 0: return np.exp(x) / (1 + np.exp(x))
         else: return 1 / (1+ np.exp(-x))
 
     def shuffle(self):
-        for layer in list(self.links.keys()): 
-            for link in list(self.links[layer].keys()):
-                rndm_int = r.randint(-100,100) / 100
-                if rndm_int == 0: rndm_int = 0.00001
-                self.links[layer][link] = rndm_int
+        for layer in range(len(self.nodes)):
+            for node in range(len(self.nodes[layer])):
+                for weight in range(len(self.nodes[layer][node]["weights"])):
+                    rndm_float = r.randint(-100,100) / 100
+                    self.nodes[layer][node]["weights"][weight] = rndm_float
 
     def show(self, size=[1400,700]):
         if type(size) != list or len(size) != 2:
             raise Exception("size expected to be list: (x,y)")
         display = NeuralDisplay()
-        display.show(self.nodes, self.links, size)
+        display.show(self.nodes, size)
 
     def save(self, file_name):
         with open(file_name, "w") as file:
-            file.write(str(self.links))
+            file.write(str(self.nodes))
 
     def load(self, file_name):
         with open(file_name) as file:
-            self.links = a.literal_eval(file.read())
+            self.nodes = a.literal_eval(file.read())
 
     def shuffle_amount(self, amount):
-        for layer in list(self.links.keys()): 
-            for link in list(self.links[layer].keys()):
-                self.links[layer][link] += r.randint(-amount, amount) / 100
+        for layer in range(len(self.nodes)):
+            for node in range(len(self.nodes[layer])):
+                for weight in range(len(self.nodes[layer][node]["weights"])):
+                    self.nodes[layer][node]["weights"][weight] += r.randint(-amount, amount) / 100
+
+    def derivative(self, output):
+        return output * (1.0 - output)
+
+    def backpropagation(self, expected):
+        for i in reversed(range(len(self.nodes))):
+            layer = self.nodes[i]
+            errors = []
+            if i != len(self.nodes)-1:
+                for j in range(len(layer)):
+                    error = 0.0
+                    for neuron in self.nodes[i + 1]:
+                        error += (neuron['weights'][j] * neuron['delta'])
+                    errors.append(error)
+            else:
+                for j in range(len(layer)):
+                    neuron = layer[j]
+                    errors.append(expected[j] - neuron['output'])
+            for j in range(len(layer)):
+                self.nodes[i][j]['delta'] = errors[j] * self.derivative(self.nodes[i][j]['output'])
+                
+    def update_weights(self, row, l_rate):
+        for i in range(1, len(self.nodes)):
+            inputs = row[:-1]
+            if i != 0:
+                inputs = [neuron['output'] for neuron in self.nodes[i-1]]
+            for k in range(len(self.nodes[i])):
+                for j in range(len(inputs)):
+                    self.nodes[i][k]['weights'][j] += l_rate * self.nodes[i][k]["delta"] * inputs[j]
+
+    def get_training_data(self, file_name):
+        with open("training3.txt","r") as file:
+            lines = file.readlines()
+        inputs, outputs = [], []
+        for line in lines:
+            inputs.append(line.replace("\n", "").split("=")[0].split(","))
+            outputs.append(line.replace("\n", "").split("=")[1].split(","))
+        return inputs, outputs
+     
+    def train(self, learning_rate, cycles, inputs, expected, print_status = False):
+        all_times = []
+        for cycle in range(cycles):
+            start_time = time.time()
+            sum_error = 0
+            for row in range(len(inputs)):
+                outputs = self.input(inputs[row])
+                sum_error += sum([(expected[row][i]-outputs[i])**2 for i in range(len(expected[row]))])
+                self.backpropagation(expected[row])
+                self.update_weights(inputs[row], learning_rate)
+            all_times.append(time.time() - start_time)
+            time_diff = mean(all_times) * (cycles - cycle)
+            minutes = math.floor(time_diff / 60)
+            seconds = round(time_diff % 60)
+            if print_status:
+                print(f"error: {round(sum_error,10):15} | cycle: {cycle:4} | approx. time left: {minutes}m {seconds}s")
+ 
+r.seed(1)
+
+
+
+for i in range(len(inputs)):
+    for inp in range(len(inputs[i])):
+        inputs[i][inp] = int(inputs[i][inp])
+    for out in range(len(outputs[i])):
+        outputs[i][out] = int(outputs[i][out])
+
+nodes = [[0 for i in range(2)],
+         [0 for i in range(4)],
+         [0 for i in range(4)],
+         [0 for i in range(2)]]
+n = Neural(nodes)
+n.shuffle()
+n.train(0.2, 10, inputs, outputs)
+
+print("-" * 100)
+score, max_score = 0, len(inputs)
+for i, o in zip(inputs, outputs):
+    out = n.input(i)
+    if out.index(max(out)) == o.index(max(o)):
+        score += 1
+print(f"SCORE {score}/{max_score}")
+
+n.show()
