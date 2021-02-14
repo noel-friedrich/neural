@@ -61,6 +61,20 @@
 # load network from file_name.txt to current network  
 > network1.load(file_name) # file_name must be string ending in .txt (located in same directory)
 ```
+### Accessing the Network
+```python
+# Access Network List using
+> network1.nodes
+# Access individual layers using
+> network1.nodes[layer_number]
+# Access individual nodes dictionary using
+> network1.nodes[layer_number][position_in_layer]
+# Access output value of an individual node using
+> network1.nodes[layer_number][position_in_layer]["output"]
+# Access list of weights of an individual node using
+> network1.nodes[layer_number][position_in_layer]["weights"]
+```
+![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neuralnodesstructure.PNG "Tkinter Visualization of Neural Network")
 ### Training using Backpropagation
 ```python
 # setup network nodes with __init__(self, nodes)
