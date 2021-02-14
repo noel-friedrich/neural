@@ -96,3 +96,6 @@
 Project is _IN PROGRESS_  
 _todo list in PROJECT: __Neural Network maker___  
 https://github.com/noel-friedrich/neural/projects/1
+
+## Credits
+Training Algorithm Code was heavily inspired by https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
