@@ -61,6 +61,34 @@
 # load network from file_name.txt to current network  
 > network1.load(file_name) # file_name must be string ending in .txt (located in same directory)
 ```
+### Training using Backpropagation
+```python
+# setup network nodes with __init__(self, nodes)
+# nodes has to be a two dimensional array, containing floats/integers, representing nodes  
+> nodes = [[0,0],[0,0,0,0],[0,0]] # 2 input neurons, 1 hidden layer containing 4 neurons, 2 output neurons
+> network1 = Neural(nodes) # create Neural Object
+
+# load the training data using (see Training Data Formating)
+> inputs, outputs = network1.load_training_data("training_example.txt") # must be .txt file in the same directory
+
+# train the network using
+> network1.train(l_rate, # learning rate (e.g. 0.2)
+                 cycles, # how many cycles (epochs) the network will train through (e.g. 1000)
+                 inputs, # inputs set from loading the training data
+                 outputs, # outputs set from loading the training data
+                 print_status=True) # (optional) print progress into console (Default is False)
+
+# get the total score using (how many of your training examples it passes)
+> score, max_score = network1.get_total_score(inputs, outputs) # set score and max_score
+> print(f"{score}/{max_score}") # python 3 (f-strings)
+```
+#### Training Data Formatting
+> Training Data to be read must be located in yourfilename.txt file  
+> Inputs must be seperated by Comma (e.g. ```1,2,3,4```)  
+> Outputs must be seperated by Comma (e.g. ```0,1,0```)  
+> Inputs and Outputs must be seperated by equal sign (e.g. ```1,2,3,4=0,1,0```) ending in line break ("\n")  
+> see "training_example.txt"  
+
 ## Screenshots
 ![Example screenshot](https://github.com/noel-friedrich/neural/blob/main/neural2884.PNG "Tkinter Visualization of Neural Network")
 
