@@ -25,6 +25,7 @@
 ## Setup
 
 Install using pip: ```$ pip install noelnetwork```
+Import the Neural Class: ```from noelnetwork.neural import Neural```
 
 
 ## Tutorial
@@ -49,11 +50,13 @@ Install using pip: ```$ pip install noelnetwork```
 > network1.shuffle_amount(amount) # amount will be devided by 100
 > network1.shuffle_amount(50) # to achieve a learning rate of 0.5
 
-# save network to file_name.txt to be loaded in later 
-> network1.save(file_name) # file_name must be string ending in .txt (located in same directory)
+# save network to file to be loaded in later 
+> file = open(yourfilename, "w") # get file any way you want  
+> network1.save(file)
 
 # load network from file_name.txt to current network  
-> network1.load(file_name) # file_name must be string ending in .txt (located in same directory)
+> file = open(yourfilename, "r") # get file any way you want  
+> network1.load(file)
 ```
 ### Accessing the Network
 ```python
@@ -76,8 +79,9 @@ Install using pip: ```$ pip install noelnetwork```
 > nodes = [[0,0],[0,0,0,0],[0,0]] # 2 input neurons, 1 hidden layer containing 4 neurons, 2 output neurons
 > network1 = Neural(nodes) # create Neural Object
 
-# load the training data using (see Training Data Formating)
-> inputs, outputs = network1.load_training_data("training_example.txt") # must be .txt file in the same directory
+# load the training data using (see Training Data Formating)  
+> file = open(yourfilename, "r") # get file any way you want  
+> inputs, outputs = network1.load_training_data(file)
 
 # train the network using
 > network1.train(l_rate, # learning rate (e.g. 0.2)
